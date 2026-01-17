@@ -111,8 +111,6 @@ export const TicketDisplay: React.FC<TicketDisplayProps> = ({ winnerSuffix, phas
 
       {/* Dynamic Digits Container */}
       <div className="flex items-center space-x-2 md:space-x-4">
-        {/* Separator Line */}
-        <div className="w-0.5 h-16 md:h-32 bg-slate-800 mx-4 md:mx-8"></div>
 
         {shuffledValues.map((val, idx) => {
            const status = getStatus(idx);
