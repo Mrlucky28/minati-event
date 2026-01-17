@@ -21,7 +21,7 @@ class AudioController {
       this.masterGain.connect(this.ctx.destination);
 
       // 🔊 FULL VOLUME
-      this.masterGain.gain.value = 0.4;
+      this.masterGain.gain.value = 0.3;
 
       this.initialized = true;
     } catch (err) {
@@ -209,7 +209,7 @@ class AudioController {
       bass.osc.stop(t + 2);
     }
 
-    // ✨ Crystal chime
+    // ✨ Crystal chime (Initial)
     const chimeTime = t + 0.4;
     const chime = this.createOscillator("sine", 2093);
     if (chime) {
@@ -225,6 +225,19 @@ class AudioController {
 
       chime.osc.start(chimeTime);
       chime.osc.stop(chimeTime + 3);
+    }
+
+    // 🌟 Final "Locked" Sparkle (New)
+    // Plays at 1.5s when the visual reveal animation finishes
+    const finalTime = t + 1.5;
+    const sparkle = this.createOscillator("sine", 3136); // G7 (Fifth of C)
+    if (sparkle) {
+        sparkle.gain.gain.setValueAtTime(0, finalTime);
+        sparkle.gain.gain.linearRampToValueAtTime(0.08, finalTime + 0.05);
+        sparkle.gain.gain.exponentialRampToValueAtTime(0.001, finalTime + 2.5);
+        
+        sparkle.osc.start(finalTime);
+        sparkle.osc.stop(finalTime + 2.5);
     }
   }
 }
