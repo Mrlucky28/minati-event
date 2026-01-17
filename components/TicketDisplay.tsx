@@ -59,7 +59,8 @@ export const TicketDisplay: React.FC<TicketDisplayProps> = ({ winnerSuffix, phas
 
         // D1 (Index 0): Shuffles 20-30s
         if (drawProgress >= 20 && drawProgress < 30) {
-             next[0] = Math.floor(Math.random() * 10).toString();
+             // Restrict shuffle to 0 or 1 only
+             next[0] = Math.floor(Math.random() * 2).toString();
              changed = true;
         } else if (drawProgress >= 30) {
              next[0] = winnerDigits[0];
