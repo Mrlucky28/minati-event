@@ -1,5 +1,4 @@
 
-
 class AudioController {
   private ctx: AudioContext | null = null;
   private masterGain: GainNode | null = null;
@@ -161,6 +160,18 @@ class AudioController {
       bass.gain.gain.exponentialRampToValueAtTime(0.001, t + 2.0);
       bass.osc.start(t);
       bass.osc.stop(t + 2.0);
+    }
+
+    // Final Crystal Chime
+    const chimeTime = t + 0.4;
+    const chime = this.createOscillator('sine', 2093.00, chimeTime, 3.0); // C7
+    if (chime) {
+      // Subtle sparkle
+      chime.gain.gain.setValueAtTime(0, chimeTime);
+      chime.gain.gain.linearRampToValueAtTime(0.05, chimeTime + 0.1);
+      chime.gain.gain.exponentialRampToValueAtTime(0.001, chimeTime + 3.0);
+      chime.osc.start(chimeTime);
+      chime.osc.stop(chimeTime + 3.0);
     }
   }
 }
