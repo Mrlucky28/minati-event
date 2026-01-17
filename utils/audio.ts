@@ -21,7 +21,7 @@ class AudioController {
       this.masterGain.connect(this.ctx.destination);
 
       // 🔊 FULL VOLUME
-      this.masterGain.gain.value = 0.3;
+      this.masterGain.gain.value = 0.4;
 
       this.initialized = true;
     } catch (err) {
